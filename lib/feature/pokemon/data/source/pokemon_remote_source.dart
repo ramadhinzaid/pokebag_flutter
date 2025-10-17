@@ -32,7 +32,7 @@ class PokemonRemoteSourceImpl extends PokemonRemoteSource {
     try {
       final result = await _api.get(
         '/pokemon/',
-        params: {'offset': offset, 'limit': 54},
+        params: {'offset': offset, 'limit': 24},
       );
       final response = PokemonResponse.fromJson(result.data);
       if (result.statusCode == 200) return response;

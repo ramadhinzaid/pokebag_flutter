@@ -54,12 +54,9 @@ class _PokemonInfoCardState extends State<_PokemonInfoCard>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 24,
-                        horizontal: 26,
-                      ),
+                    _baseLayout(
                       child: Column(
+                        spacing: 16,
                         children: [
                           _aboutChild(
                             title: 'Species',
@@ -86,12 +83,9 @@ class _PokemonInfoCardState extends State<_PokemonInfoCard>
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 26,
-                        vertical: 24,
-                      ),
+                    _baseLayout(
                       child: Column(
+                        spacing: 16,
                         children: (pokemon?.stats ?? [])
                             .map(
                               (e) => Row(
@@ -134,11 +128,7 @@ class _PokemonInfoCardState extends State<_PokemonInfoCard>
                             .toList(),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 24,
-                        horizontal: 26,
-                      ),
+                    _baseLayout(
                       child: Wrap(
                         runSpacing: 16,
                         spacing: 16,
@@ -160,13 +150,10 @@ class _PokemonInfoCardState extends State<_PokemonInfoCard>
                         }).toList(),
                       ),
                     ),
-                    SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 24,
-                        horizontal: 26,
-                      ),
+                    _baseLayout(
                       child: Wrap(
                         spacing: 8,
+                        runSpacing: 8,
                         alignment: WrapAlignment.start,
                         children: (pokemon?.moves ?? [])
                             .map((e) => Chip(label: Text(e?.formatName ?? '')))
@@ -180,6 +167,13 @@ class _PokemonInfoCardState extends State<_PokemonInfoCard>
           ),
         );
       },
+    );
+  }
+
+  Widget _baseLayout({Widget? child}) {
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(vertical: 24, horizontal: 26),
+      child: child,
     );
   }
 
